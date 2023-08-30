@@ -19,7 +19,6 @@ const Container = styled.div`
 `;
 
 function App() {
-  // State variables for managing notes and UI
   const [notesList, setNotesList] = useState(() => {
     // Load notes from local storage if available, else start with an empty array
     const storedNotes = localStorage.getItem("notesList");
