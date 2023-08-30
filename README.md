@@ -20,9 +20,8 @@ Users should be able to:
 - All notes are presisted in the localStorage
 
 ### Links
-
-- Live Site URL: [@via Vercel](https://api-restcountries.vercel.app/)
-- Live Site URL: [@via Netlify](https://api-restcountries.netlify.app/)
+- Live Site URL: [@via Vercel](https://my-r-notes.vercel.app/)
+- Live Site URL: [@via Netlify](https://my-r-notes.netlify.app)
 
 ### Built with
 
