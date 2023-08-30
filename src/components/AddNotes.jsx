@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import { styled } from "styled-components";
 import { StyledButton } from "./NoteItem";
 
@@ -27,7 +26,37 @@ const StyledTextArea = styled.textarea`
   box-shadow: 0 0 5px rgb(0, 0, 0, 0.2);
 `;
 
-function AddNotes({ handleSubmit, noteInput, setNoteInput, isEditing }) {
+function AddNotes({
+  notesList,
+  setNotesList,
+  isEditing,
+  setIsEditing,
+  noteInput,
+  setNoteInput,
+}) {
+  // Handle adding note
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!noteInput.trim()) return;
+
+    if (isEditing) {
+      // Update the existing note when editing
+      const updatedNotes = notesList.map((note) =>
+        note.id === isEditing ? { ...note, task: noteInput } : note
+      );
+      setNotesList(updatedNotes);
+      setIsEditing(null);
+    } else {
+      // Add a new note when not editing
+      const newNote = {
+        id: new Date().getTime().toString(),
+        task: noteInput,
+      };
+      setNotesList((currentNotes) => [...currentNotes, newNote]);
+    }
+    setNoteInput("");
+  };
+
   return (
     <StyledForm>
       <StyledTextArea

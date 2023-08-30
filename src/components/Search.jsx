@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { styled } from "styled-components";
 
 // Styled components for styling
@@ -22,7 +23,23 @@ const Span = styled.span`
   font-size: 12px;
 `;
 
-function Search({ query, handleSearch, notesList }) {
+function Search({ notesList, setFilteredNotes }) {
+  const [query, setQuery] = useState("");
+  // Handle search input change
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setQuery(value);
+
+    if (value) {
+      const filt = notesList.filter((note) =>
+        note.task.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredNotes(filt);
+    } else {
+      setFilteredNotes([]);
+    }
+  };
+
   return (
     <Row>
       <StyledSearch

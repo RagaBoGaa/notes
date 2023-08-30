@@ -4,6 +4,7 @@ import { css, styled } from "styled-components";
 
 // Styled components for styling
 const StyledLi = styled.li`
+  word-wrap: break-word;
   background-color: #fff;
   padding: 0.75rem;
   border-radius: 5px;
@@ -69,7 +70,26 @@ const BtnsContainer = styled.div`
   justify-content: flex-end;
 `;
 
-function NoteItem({ note, handleEdit, handleDelete }) {
+function NoteItem({
+  note,
+  notesList,
+  setNotesList,
+  setNoteInput,
+  setIsEditing,
+}) {
+  // Handle note deletion
+  const handleDelete = (id) => {
+    const updatedNotes = notesList.filter((note) => note.id !== id);
+    setNotesList(updatedNotes);
+  };
+
+  // Handle note editing
+  const handleEdit = (id) => {
+    const foundNote = notesList.find((note) => note.id === id);
+    setNoteInput(foundNote.task);
+    setIsEditing(id);
+  };
+
   return (
     <StyledLi>
       <TextContainer>{note.task}</TextContainer>

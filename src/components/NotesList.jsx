@@ -10,7 +10,7 @@ const StyledUl = styled.ul`
   list-style: none;
 `;
 
-function NotesList({ notesList, handleEdit, handleDelete }) {
+function NotesList({ notesList, setNotesList, setNoteInput, setIsEditing }) {
   return (
     <div>
       <StyledUl>
@@ -18,8 +18,10 @@ function NotesList({ notesList, handleEdit, handleDelete }) {
           <NoteItem
             key={note.id}
             note={note}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
+            notesList={notesList}
+            setIsEditing={setIsEditing}
+            setNoteInput={setNoteInput}
+            setNotesList={setNotesList}
           />
         ))}
       </StyledUl>
